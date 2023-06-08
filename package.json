@@ -7,7 +7,7 @@
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d main -d build"
+    "deploy": "gh-pages -d www"
   },
   "dependencies": {
     "eslint": "^8.42.0",
