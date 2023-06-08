@@ -7,9 +7,9 @@ const Sidebar = () => {
   };
 
   const onDropOnSidebar = (event) => {
-    const droppedElementId = event.dataTransfer.getData("text/plain");
-    const droppedElement = document.getElementById(droppedElementId);
-    console.log(event);
+    // const droppedElementId = event.dataTransfer.getData("text/plain");
+    // // const droppedElement = document.getElementById(droppedElementId);
+    // console.log(event);
   }
 
   return (

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { ActiveEventsContext } from "../../context/activeEventsContext";
+import React, { useContext } from "react";
+import { ActiveEventsContext } from "../../context/ActiveEventsContext";
 
 const Dimensions = () => {
   const { dimensions } = useContext(ActiveEventsContext);  

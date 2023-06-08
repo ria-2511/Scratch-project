@@ -19,9 +19,11 @@ export function calculateDimensions (activeEvents) {
                 dimensions.angle += 15
                 break;
             }
+            default : {}
         }
     }
     
+    // eslint-disable-next-line array-callback-return
     activeEvents.map((event) => {
         control(event)
     })

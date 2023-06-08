@@ -5683,9 +5683,9 @@ var Sidebar = function Sidebar() {
     e.dataTransfer.setData("text/plain", e.target.id);
   };
   var onDropOnSidebar = function onDropOnSidebar(event) {
-    var droppedElementId = event.dataTransfer.getData("text/plain");
-    var droppedElement = document.getElementById(droppedElementId);
-    console.log(event);
+    // const droppedElementId = event.dataTransfer.getData("text/plain");
+    // // const droppedElement = document.getElementById(droppedElementId);
+    // console.log(event);
   };
   return /*#__PURE__*/react.createElement("div", {
     onDrop: onDropOnSidebar
@@ -5742,7 +5742,7 @@ var motions = ["motion-turn15DegreesClock", "motion-turn15DegreesAntiClock", "mo
 var events = ["event-Flag", "event-spriteClick"];
 var eventCss = "itemDrag flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer";
 var motionCss = "itemDrag flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer";
-;// CONCATENATED MODULE: ./src/context/activeEventsContext.js
+;// CONCATENATED MODULE: ./src/context/ActiveEventsContext.js
 
 var ActiveEventsContext = /*#__PURE__*/(0,react.createContext)({
   activeEvents: [],
@@ -6001,8 +6001,12 @@ function calculateDimensions(activeEvents) {
           dimensions.angle += 15;
           break;
         }
+      default:
+        {}
     }
   };
+
+  // eslint-disable-next-line array-callback-return
   activeEvents.map(function (event) {
     control(event);
   });

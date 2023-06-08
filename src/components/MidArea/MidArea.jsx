@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { events, motions } from "../../constants/basic";
-import { ActiveEventsContext } from "../../context/activeEventsContext";
+import { ActiveEventsContext } from "../../context/ActiveEventsContext";
 
 const MidArea = ({setActiveEvents}) => {
   const { activeEvents } = useContext(ActiveEventsContext);

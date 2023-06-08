@@ -4,7 +4,7 @@ import MidArea from "../MidArea/MidArea";
 import Icon from "../Icon";
 import PreviewArea from "../PreviewArea/PreviewArea";
 import Dimensions from "../Dimensions/Dimensions";
-import { ActiveEventsContext } from "../../context/activeEventsContext";
+import { ActiveEventsContext } from "../../context/ActiveEventsContext";
 import { calculateDimensions } from "../../helpers/basicHelpers";
 
 const MainPage = () => {
