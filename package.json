@@ -1,16 +1,18 @@
 {
   "name": "scratch-starter-project",
   "version": "0.1.0",
+  "homepage": "https://github.com/ria-2511/Scratch-project",
   "private": true,
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "predeploy": "npm run build", 
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "eslint": "^8.42.0",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
-    "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^17.0.2",
     "react-router": "^6.12.1",
     "react-router-dom": "^6.12.1",

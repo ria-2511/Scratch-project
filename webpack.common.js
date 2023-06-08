@@ -5,6 +5,9 @@ module.exports = {
   entry: {
     app: "./src/index.js",
   },
+  performance: {
+    hints: false,
+  },
   output: {
     // filename: "app.js",
     path: path.resolve(__dirname, "public"),
