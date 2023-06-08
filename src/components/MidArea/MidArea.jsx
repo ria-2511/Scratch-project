@@ -11,6 +11,10 @@ const MidArea = ({setActiveEvents}) => {
     event.preventDefault();
   };
 
+  const onDragStart = (e) => {
+    e.dataTransfer.setData("text/plain", e.target.id);
+  }
+
   const rulesCheck = (activeElement) => {
     if (activeEvents.length === 0 && events.includes(activeElement.id)) {
       return true;
@@ -34,6 +38,10 @@ const MidArea = ({setActiveEvents}) => {
 
     if (rulesCheck(droppedElement)) {
       const clone = droppedElement.cloneNode(true);
+      clone.id = `clone_${droppedElementId}`
+      clone.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData("text/plain", e.target.id);
+      })
       event.target.appendChild(clone);
       currentEvents.push(droppedElementId)
       setActiveEvents(currentEvents)
@@ -44,6 +52,7 @@ const MidArea = ({setActiveEvents}) => {
     <div
       onDrop={onDrop}
       onDragOver={onDragOver}
+      onDragStart={onDragStart}
       id="dropArea"
       className="flex-1 h-full overflow-auto"
     >

@@ -1,7 +1,6 @@
 import React from "react";
 
 const CatSprite = ({className}) => {
-  console.log(className);
   return (
     <div id="sprite" className={`flex-none absolute ${className}`} draggable="true">
       <svg

@@ -10,10 +10,20 @@ import { calculateDimensions } from "../../helpers/basicHelpers";
 const MainPage = () => {
   const [activeEvents, setActiveEvents] = useState([]);
   const [dimensions, setDimensions] = useState();
+  const newDimensions = calculateDimensions(activeEvents)
+  const doesIsSpriteExist = (activeEvents[0] === "event-spriteClick")
 
   const handleFlagClick = () => {
-    const newDimensions = calculateDimensions(activeEvents)
-    setDimensions(newDimensions);
+    if(activeEvents[0] === 'event-Flag') {
+      setDimensions(newDimensions);
+    }
+    else return;
+  }
+
+  if(doesIsSpriteExist){
+    document.getElementById("clone_event-spriteClick").addEventListener('click',()=>{
+      setDimensions(newDimensions)
+    })
   }
 
   return (

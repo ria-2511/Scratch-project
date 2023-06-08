@@ -702,7 +702,6 @@ var MidArea = function MidArea(_ref) {
 
 var CatSprite = function CatSprite(_ref) {
   var className = _ref.className;
-  console.log(className);
   return /*#__PURE__*/react.createElement("div", {
     id: "sprite",
     className: "flex-none sprite",

@@ -6,12 +6,16 @@ const Sidebar = () => {
     e.dataTransfer.setData("text/plain", e.target.id);
   };
 
-  const onDragOver = (event) => {
-    // add the delete functionality
-  };
+  const onDropOnSidebar = (event) => {
+    const droppedElementId = event.dataTransfer.getData("text/plain");
+    const droppedElement = document.getElementById(droppedElementId);
+    console.log(event);
+  }
 
   return (
     <div
+      onDrop={onDropOnSidebar}
+      // onDragOver={onDragOver}
       id="sidebar"
       className="w-60 flex-none h-full overflow-y-auto flex flex-col items-start p-2 border-r border-gray-200"
     >
@@ -19,7 +23,6 @@ const Sidebar = () => {
       <div
         draggable="true"
         onDragStart={OnElementDrag}
-        onDragOver={onDragOver}
         id="event-Flag"
         className="itemDrag flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
       >
@@ -30,7 +33,6 @@ const Sidebar = () => {
       <div
       draggable="true"
       onDragStart={OnElementDrag}
-      onDragOver={onDragOver}
         id="event-spriteClick"
         className="itemDrag flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
       >
@@ -40,7 +42,6 @@ const Sidebar = () => {
       <div
       draggable="true"
       onDragStart={OnElementDrag}
-      onDragOver={onDragOver}
         id="motion-move10steps"
         className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
       >
@@ -49,7 +50,6 @@ const Sidebar = () => {
       <div
       draggable="true"
       onDragStart={OnElementDrag}
-      onDragOver={onDragOver}
         id="motion-turn15DegreesAntiClock"
         className="itemDrag flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
       >
@@ -60,7 +60,6 @@ const Sidebar = () => {
       <div
       draggable="true"
       onDragStart={OnElementDrag}
-      onDragOver={onDragOver}
         id="motion-turn15DegreesClock"
         className="itemDrag flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
       >

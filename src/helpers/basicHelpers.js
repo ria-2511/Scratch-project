@@ -2,7 +2,7 @@ export function calculateDimensions (activeEvents) {
     const dimensions = {
         x : 0,
         y : 0,
-        angle : 180
+        angle : 90
     }
 
     const control = (eventId) => {
@@ -32,12 +32,11 @@ export const getAnimationsString = (dimensions) => {
     let baseString = 'transform transition delay-1500'
     
         const xData = dimensions && dimensions.x / 10;
-        console.log(dimensions && dimensions.angle);
-        const anglesData = dimensions && (Math.abs(180 - dimensions.angle) / 15);
+        const anglesData = dimensions && ((dimensions.angle - 90) / 15);
         const animationsStrings = {
         xClass : `ml-${xData*4}`,
         yClass : 'ml-4',
-        angleClass : `rotate-${anglesData*15}`
+        angleClass : `${anglesData<0 ? '-' : ''}rotate-${Math.abs(anglesData*15)}`
         }
 
         if(dimensions && dimensions.x > 0){
@@ -47,6 +46,5 @@ export const getAnimationsString = (dimensions) => {
         baseString = `${baseString} ${animationsStrings.angleClass}`
         }
     
-    console.log(baseString);
     return baseString;
   }

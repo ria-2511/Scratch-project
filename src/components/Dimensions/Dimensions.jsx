@@ -10,7 +10,7 @@ const Dimensions = () => {
         <span>Directions:</span>
         <span>x = {(dimensions && dimensions.x) || 0}</span>
         <span>y = {(dimensions && dimensions.y) || 0}</span>
-        <span>Directions = {(dimensions && dimensions.angle) || 180}</span>
+        <span>Directions = {(dimensions && dimensions.angle) || 90}</span>
       </div>
     </div>
   );
