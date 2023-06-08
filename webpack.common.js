@@ -9,6 +9,9 @@ module.exports = {
     // filename: "app.js",
     path: path.resolve(__dirname, "public"),
   },
+  resolve: {
+    extensions: ["", ".js", ".jsx"],
+  },
   module: {
     rules: [
       {
@@ -34,7 +37,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.m?js$/,
+        test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader",
