@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ActiveEventsContext } from "../../context/ActiveEventsContext";
-import { eventIds, motionIds } from "../../constants/basic";
+import { eventIds, motionIds, widths } from "../../constants/basic";
 
 const MidArea = ({setActiveEvents}) => {
   const { activeEvents } = useContext(ActiveEventsContext);
@@ -44,10 +44,10 @@ const MidArea = ({setActiveEvents}) => {
         e.dataTransfer.setData("text/plain", e.target.id);
       })
       if(isEvent) {
-        clone.className="flex flex-row w-60 flex-wrap bg-yellow-500 text-white px-2 py-1 text-sm cursor-pointer"
+        clone.className=`flex flex-row flex-wrap ${widths[droppedElementId]} bg-yellow-500 text-white px-2 py-1 text-sm cursor-pointer`
       }
       else {
-        clone.className="flex flex-row w-60 flex-wrap bg-blue-500 text-white px-2 py-1 text-sm cursor-pointer"
+        clone.className=`flex flex-row flex-wrap ${widths[droppedElementId]} bg-blue-500 text-white px-2 py-1 text-sm cursor-pointer`
       }
       event.target.appendChild(clone);
       currentEvents.push(droppedElementId)
