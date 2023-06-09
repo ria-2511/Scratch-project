@@ -10,7 +10,7 @@ module.exports = merge([
       hints: false,
     },
     devServer: {
-      static: path.join(__dirname, "public"),
+      static: path.join(__dirname, "build"),
       compress: true,
       port: 3000,
       historyApiFallback: true,
