@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { events, motions } from "../../constants/basic";
 import { ActiveEventsContext } from "../../context/ActiveEventsContext";
+import { eventIds, motionIds } from "../../constants/basic";
 
 const MidArea = ({setActiveEvents}) => {
   const { activeEvents } = useContext(ActiveEventsContext);
@@ -16,13 +16,13 @@ const MidArea = ({setActiveEvents}) => {
   }
 
   const rulesCheck = (activeElement) => {
-    if (activeEvents.length === 0 && events.includes(activeElement.id)) {
+    if (activeEvents.length === 0 && eventIds.includes(activeElement.id)) {
       return true;
     }
     if (
       activeEvents.length > 0 &&
-      motions.includes(activeElement.id) &&
-      events.includes(activeEvents[0])
+      motionIds.includes(activeElement.id) &&
+      eventIds.includes(activeEvents[0])
     ) {
       return true;
     }
@@ -35,6 +35,7 @@ const MidArea = ({setActiveEvents}) => {
     // grabbing the id of the dropped ID
     const droppedElementId = event.dataTransfer.getData("text/plain");
     const droppedElement = document.getElementById(droppedElementId);
+    const isEvent = eventIds.includes(droppedElementId)
 
     if (rulesCheck(droppedElement)) {
       const clone = droppedElement.cloneNode(true);
@@ -42,6 +43,12 @@ const MidArea = ({setActiveEvents}) => {
       clone.addEventListener('dragstart', (e) => {
         e.dataTransfer.setData("text/plain", e.target.id);
       })
+      if(isEvent) {
+        clone.className="flex flex-row w-60 flex-wrap bg-yellow-500 text-white px-2 py-1 text-sm cursor-pointer"
+      }
+      else {
+        clone.className="flex flex-row w-60 flex-wrap bg-blue-500 text-white px-2 py-1 text-sm cursor-pointer"
+      }
       event.target.appendChild(clone);
       currentEvents.push(droppedElementId)
       setActiveEvents(currentEvents)
