@@ -6,16 +6,17 @@ const Sidebar = () => {
     e.dataTransfer.setData("text/plain", e.target.id);
   };
 
-  const onDropOnSidebar = (event) => {
-    // const droppedElementId = event.dataTransfer.getData("text/plain");
-    // // const droppedElement = document.getElementById(droppedElementId);
-    // console.log(event);
+  const onDrop = (event) => {
+    event.preventDefault();
+    // grabbing the id of the dropped ID
+    const droppedElementId = event.dataTransfer.getData("text/plain");
+    const droppedElement = document.getElementById(droppedElementId);
+    console.log('hi');
   }
 
   return (
     <div
-      onDrop={onDropOnSidebar}
-      // onDragOver={onDragOver}
+      onDrop={onDrop}
       id="sidebar"
       className="w-60 flex-none h-full overflow-y-auto flex flex-col items-start p-2 border-r border-gray-200"
     >
