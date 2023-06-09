@@ -521,15 +521,15 @@ var Sidebar = function Sidebar() {
   var OnElementDrag = function OnElementDrag(e) {
     e.dataTransfer.setData("text/plain", e.target.id);
   };
-  var onDropOnSidebar = function onDropOnSidebar(event) {
-    // const droppedElementId = event.dataTransfer.getData("text/plain");
-    // // const droppedElement = document.getElementById(droppedElementId);
-    // console.log(event);
+  var onDrop = function onDrop(event) {
+    event.preventDefault();
+    // grabbing the id of the dropped ID
+    var droppedElementId = event.dataTransfer.getData("text/plain");
+    var droppedElement = document.getElementById(droppedElementId);
+    console.log('hi');
   };
   return /*#__PURE__*/react.createElement("div", {
-    onDrop: onDropOnSidebar
-    // onDragOver={onDragOver}
-    ,
+    onDrop: onDrop,
     id: "sidebar",
     className: "w-60 flex-none h-full overflow-y-auto flex flex-col items-start p-2 border-r border-gray-200"
   }, /*#__PURE__*/react.createElement("div", {
@@ -576,17 +576,24 @@ var Sidebar = function Sidebar() {
   }), "15 degrees"));
 };
 /* harmony default export */ var Sidebar_Sidebar = (Sidebar);
-;// CONCATENATED MODULE: ./src/constants/basic.js
-var motions = ["motion-turn15DegreesClock", "motion-turn15DegreesAntiClock", "motion-move10steps"];
-var events = ["event-Flag", "event-spriteClick"];
-var eventCss = "itemDrag flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer";
-var motionCss = "itemDrag flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer";
 ;// CONCATENATED MODULE: ./src/context/ActiveEventsContext.js
 
 var ActiveEventsContext = /*#__PURE__*/(0,react.createContext)({
   activeEvents: [],
   dimensions: []
 });
+;// CONCATENATED MODULE: ./src/constants/basic.js
+var motionIds = ["motion-turn15DegreesClock", "motion-turn15DegreesAntiClock", "motion-move10steps"];
+var eventIds = ["event-Flag", "event-spriteClick"];
+var eventCss = "itemDrag flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer";
+var motionCss = "itemDrag flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer";
+var widths = {
+  "motion-turn15DegreesClock": "w-40",
+  "motion-turn15DegreesAntiClock": "w-40",
+  "motion-move10steps": 'w-32',
+  "event-Flag": 'w-36',
+  "event-spriteClick": 'w-44'
+};
 ;// CONCATENATED MODULE: ./src/components/MidArea/MidArea.jsx
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -611,10 +618,10 @@ var MidArea = function MidArea(_ref) {
     e.dataTransfer.setData("text/plain", e.target.id);
   };
   var rulesCheck = function rulesCheck(activeElement) {
-    if (activeEvents.length === 0 && events.includes(activeElement.id)) {
+    if (activeEvents.length === 0 && eventIds.includes(activeElement.id)) {
       return true;
     }
-    if (activeEvents.length > 0 && motions.includes(activeElement.id) && events.includes(activeEvents[0])) {
+    if (activeEvents.length > 0 && motionIds.includes(activeElement.id) && eventIds.includes(activeEvents[0])) {
       return true;
     }
     return false;
@@ -626,12 +633,18 @@ var MidArea = function MidArea(_ref) {
     // grabbing the id of the dropped ID
     var droppedElementId = event.dataTransfer.getData("text/plain");
     var droppedElement = document.getElementById(droppedElementId);
+    var isEvent = eventIds.includes(droppedElementId);
     if (rulesCheck(droppedElement)) {
       var clone = droppedElement.cloneNode(true);
       clone.id = "clone_".concat(droppedElementId);
       clone.addEventListener('dragstart', function (e) {
         e.dataTransfer.setData("text/plain", e.target.id);
       });
+      if (isEvent) {
+        clone.className = "flex flex-row flex-wrap ".concat(widths[droppedElementId], " bg-yellow-500 text-white px-2 py-1 text-sm cursor-pointer");
+      } else {
+        clone.className = "flex flex-row flex-wrap ".concat(widths[droppedElementId], " bg-blue-500 text-white px-2 py-1 text-sm cursor-pointer");
+      }
       event.target.appendChild(clone);
       currentEvents.push(droppedElementId);
       setActiveEvents(currentEvents);
