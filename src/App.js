@@ -7,7 +7,7 @@ export default function App() {
   return (
     <BrowserRouter>
   <Routes>
-    <Route path={"/"} Component={MainPage}/>
+    <Route path={"/ria-2511/Scratch-project"} Component={MainPage}/>
   </Routes>
   </BrowserRouter>
 );

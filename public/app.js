@@ -7030,7 +7030,7 @@ function usePrompt(_ref8) {
 
 function App() {
   return /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(Routes, null, /*#__PURE__*/react.createElement(Route, {
-    path: "/",
+    path: "/ria-2511/Scratch-project",
     Component: MainPage_MainPage
   })));
 }
