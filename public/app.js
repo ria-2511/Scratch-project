@@ -332,6 +332,20 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!pl(c))throw Er
 
 /***/ }),
 
+/***/ 745:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var m = __webpack_require__(935);
+if (true) {
+  exports.createRoot = m.createRoot;
+  exports.hydrateRoot = m.hydrateRoot;
+} else { var i; }
+
+
+/***/ }),
+
 /***/ 935:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -542,8 +556,8 @@ var __webpack_exports__ = {};
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__(294);
 var react_namespaceObject = /*#__PURE__*/__webpack_require__.t(react, 2);
-// EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(935);
+// EXTERNAL MODULE: ./node_modules/react-dom/client.js
+var client = __webpack_require__(745);
 ;// CONCATENATED MODULE: ./node_modules/@remix-run/router/dist/router.js
 /**
  * @remix-run/router v1.6.3
@@ -7025,7 +7039,8 @@ function App() {
 
 
 
-react_dom.render( /*#__PURE__*/react.createElement(react.StrictMode, null, /*#__PURE__*/react.createElement(App, null)), document.getElementById("root"));
+var root = client.createRoot(document.getElementById("root"));
+root.render( /*#__PURE__*/react.createElement(react.StrictMode, null, /*#__PURE__*/react.createElement(App, null)));
 }();
 /******/ })()
 ;
