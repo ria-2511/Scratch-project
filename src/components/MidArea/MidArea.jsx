@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ActiveEventsContext } from "../../context/ActiveEventsContext";
-import { eventIds, motionIds, widths } from "../../constants/basic";
+import SetOfBlocks from "../Block/SetofBlocks";
 
-const MidArea = ({setActiveEvents}) => {
-  const { activeEvents } = useContext(ActiveEventsContext);
-  const currentEvents = [...activeEvents];
-
+const MidArea = () => {
+  const { activeEvents,setActiveEvents, spriteIndex, setSpriteIndex } = useContext(ActiveEventsContext);
   // when the element over the drag component to add a shape shadow to join elements
   const onDragOver = (event) => {
     event.preventDefault();
@@ -15,45 +13,26 @@ const MidArea = ({setActiveEvents}) => {
     e.dataTransfer.setData("text/plain", e.target.id);
   }
 
-  const rulesCheck = (activeElement) => {
-    if (activeEvents.length === 0 && eventIds.includes(activeElement.id)) {
-      return true;
-    }
-    if (
-      activeEvents.length > 0 &&
-      motionIds.includes(activeElement.id) &&
-      eventIds.includes(activeEvents[0])
-    ) {
-      return true;
-    }
-    return false;
-  };
-
   // when the element is dropped into the zone
   const onDrop = (event) => {
     event.preventDefault();
     // grabbing the id of the dropped ID
     const droppedElementId = event.dataTransfer.getData("text/plain");
-    const droppedElement = document.getElementById(droppedElementId);
-    const isEvent = eventIds.includes(droppedElementId)
+    const newBlockObj = {
+      spriteNum: spriteIndex,
+      x: event.screenX - 100,
+      y: event.screenY - 180,
+      className: `absolute`,
+      id: droppedElementId
+    }
 
-    if (rulesCheck(droppedElement)) {
-      const clone = droppedElement.cloneNode(true);
-      clone.id = `clone_${droppedElementId}`
-      clone.addEventListener('dragstart', (e) => {
-        e.dataTransfer.setData("text/plain", e.target.id);
-      })
-      if(isEvent) {
-        clone.className=`flex flex-row flex-wrap ${widths[droppedElementId]} bg-yellow-500 text-white px-2 py-1 text-sm cursor-pointer`
-      }
-      else {
-        clone.className=`flex flex-row flex-wrap ${widths[droppedElementId]} bg-blue-500 text-white px-2 py-1 text-sm cursor-pointer`
-      }
-      event.target.appendChild(clone);
-      currentEvents.push(droppedElementId)
-      setActiveEvents(currentEvents)
-  }}
+    setSpriteIndex((index) => index + 1)
+    const currentEvents = JSON.parse(JSON.stringify(activeEvents));
+    const newBlocksArr = [newBlockObj]
+    currentEvents.push(newBlocksArr);
 
+    setActiveEvents(currentEvents);
+  }
 
   return (
     <div
@@ -63,7 +42,13 @@ const MidArea = ({setActiveEvents}) => {
       id="dropArea"
       className="flex-1 h-full overflow-auto"
     >
-      <span className="flex justify-center">Mid Area</span>
+      <span className="flex">
+        {activeEvents.map((blocks,index) => {
+          return (
+            <SetOfBlocks key={index} blocks={blocks} blockIndex={index} />
+          )
+        })}
+      </span>
     </div>
   )
 };

@@ -1,5 +1,6 @@
 module.exports = {
   darkMode: "class",
+  important: true,
   purge: ["./src/**/*.{js,jsx}"],
   variants: {},
   plugins: [],
@@ -52,7 +53,10 @@ module.exports = {
         '-225': '-225deg',
         '210': '210deg',
         '-210': '-210deg'
-      }
+      },
+      colors: {
+        'slate-200': '#bcbcbc',
+      },
     },
   }
 };

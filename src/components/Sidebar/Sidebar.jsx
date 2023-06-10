@@ -11,7 +11,6 @@ const Sidebar = () => {
     // grabbing the id of the dropped ID
     const droppedElementId = event.dataTransfer.getData("text/plain");
     const droppedElement = document.getElementById(droppedElementId);
-    console.log('hi');
   }
 
   return (

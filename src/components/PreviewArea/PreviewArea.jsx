@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import CatSprite from "../../components/CatSprite";
-import { ActiveEventsContext } from "../../context/ActiveEventsContext";
 import { getAnimationsString } from "../../helpers/basicHelpers";
 
-const PreviewArea = () => {
-  const { dimensions } = useContext(ActiveEventsContext);
-
+const PreviewArea = ({dimensions}) => {
   const className = getAnimationsString(dimensions);
 
   return (
