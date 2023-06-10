@@ -11,4 +11,9 @@ export const ActiveEventsContext = createContext({
   spriteIndex: 0,
   setActiveEvents: () => {},
   setSpriteIndex : (index) => {index++},
+  spriteClassName: '',
+  spriteCoordinates: {
+    x:undefined,
+    y:undefined
+  }
 });

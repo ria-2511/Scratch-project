@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ActiveEventsContext } from "../context/ActiveEventsContext";
 
-const CatSprite = ({className}) => {
+const CatSprite = () => {
+  const {spriteClassName, spriteCoordinates} = useContext(ActiveEventsContext)
+  console.log(spriteClassName);
   return (
-    <div id="sprite" className={`flex-none absolute ${className}`} draggable="true">
+    <div id="sprite" style={{top: `${spriteCoordinates.y}px`, left: `${spriteCoordinates.x}px`}} className={`flex-none absolute ${spriteClassName}`} draggable="true">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="95.17898101806641"

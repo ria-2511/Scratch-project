@@ -20,6 +20,8 @@ const MainPage = () => {
     angle:90
   });
   const newDimensions = calculateDimensions(activeEvents)
+  const [spriteClassName, setSpriteClassName] =  useState('')
+  const [spriteCoordinates, setSpriteCoordinates] = useState({x:null,y:null})
   const [spriteIndex , setSpriteIndex] = useState(0);
   const doesIsSpriteExist = (activeEvents[0] === "event-spriteClick")
 
@@ -37,7 +39,7 @@ const MainPage = () => {
   }
 
   return (
-    <ActiveEventsContext.Provider value={{ activeEvents,setActiveEvents, spriteIndex, setSpriteIndex }}>
+    <ActiveEventsContext.Provider value={{ activeEvents,spriteClassName,spriteCoordinates,setActiveEvents, spriteIndex, setSpriteIndex }}>
       <div className="bg-blue-100 pt-6 font-sans">
         <div className="h-screen overflow-hidden flex flex-row  ">
           <div className="flex-1 h-screen overflow-hidden flex flex-row bg-white border-t border-r border-gray-200 rounded-tr-xl mr-2">
@@ -53,11 +55,11 @@ const MainPage = () => {
             </div>
             <div className="w-inherit h-3/6 overflow-hidden bg-white border-t border-l border-gray-200 rounded-tl-xl ml-2">
               <div>
-                <PreviewArea dimensions={dimensions} />
+                <PreviewArea/>
               </div>
             </div>
             <div className="w-inherit h-2/6 overflow-hidden bg-white border-t border-l border-gray-200 rounded-tl-xl ml-2 mt-2">
-              <Dimensions />
+              <Dimensions dimensions={dimensions} setSpriteClassName={setSpriteClassName} setSpriteCoordinates={setSpriteCoordinates} />
             </div>
           </div>
         </div>
